@@ -1,0 +1,37 @@
+ <!DOCTYPE html>
+<html>
+<head>
+	<script src="http://www.w3schools.com/lib/w3data.js"></script>
+
+<!--		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+
+<!--	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.js">    </script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+	<script src="app.js"></script>
+	<style>
+		body {
+		  background: url(school.jpeg) no-repeat;
+		  background-size: 100%;
+		}
+	</style>
+</head>
+<body ng-app="workSheet">
+
+	<div w3-include-html="header.html"></div>
+	<div w3-include-html="content.html"></div>
+	<div ng-controller="myFractions">
+		<ul ng-repeat="x in fractions">
+			<li>{{x.numerator}}/{{x.denominator}}={{x.numerator/x.denominator}}</li>
+
+		</ul>
+	</div>
+</body>
+</html>
+
+
+<script>
+w3IncludeHTML();
+</script>
+
+
+

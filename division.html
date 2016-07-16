@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="workSheet">
+<head>
+	<script src="http://www.w3schools.com/lib/w3data.js"></script>
+
+<!--		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+
+<!--	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.js">    </script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+	<script src="app.js"></script>
+</head>
+<body ng-controller="Controller">
+	<font color=black>
+	<div>
+
+	</div>
+	</font>
+
+	<div ng-controller="DoubleController">
+		<ul ng-repeat="x in fractions">
+			<li>{{x.numerator}} / {{x.denominator}} = <input ng-model="value" >{{ division(x.id,value) }}<br></li>
+				
+<!--	  Two times <input ng-model="value"> equals {{ double(x.id,value) }}<br> -->
+<!--		{{myvalue}}<br> -->
+		Result:{{result}}<br>
+		Value:{{value}}
+		</ul>
+		<input id="clickMe" type="button" value="New Worksheet" onclick="newWorksheet();" />
+	</div>
+
+</body>
+</html>
+
+
+<script>
+w3IncludeHTML();
+</script>
+
+

@@ -1,0 +1,36 @@
+#!/usr/bin/perl
+
+print "Content-type: text/html\r\n\r\n";
+#print "<!DOCTYPE html>"
+print <<EOF;
+
+
+<html>
+<head>
+	<script src="http://www.w3schools.com/lib/w3data.js"></script>
+	<link rel="import" href="html_head.html">
+
+	<style>
+		body {
+		  background: url(http://174.49.32.201/TutorSite/school.jpeg) no-repeat;
+		  background-size: 100%;
+		}
+	</style>
+</head>
+<body ng-app="workSheet">
+
+	<div w3-include-html="header.html"></div>
+	<div w3-include-html="http://174.49.32.201/TutorSite/content.html"></div>
+
+</body>
+</html>
+
+
+<script>
+w3IncludeHTML();
+</script>
+
+EOF
+
+
+
