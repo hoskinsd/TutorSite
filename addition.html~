@@ -10,6 +10,7 @@
 <body>
 	<font color=black>
 
+
 <script>
 console.log("hello");
 //newestWorksheet();
@@ -27,7 +28,7 @@ console.log("hello");
 	</div>
 
 
-	<input id="clickMe" type="button" value="New Worksheet" onclick="newestWorksheet();" />
+	<input id="clickMe" type="button" value="New Worksheet" onclick="newWorksheet();" />
 
 	<br>
 	<br>
