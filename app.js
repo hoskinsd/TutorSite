@@ -2,6 +2,7 @@
 
 newWorksheet();
 
+
 var loc_data;
 
 	// Do an ajax call for data and create a new worksheet.
