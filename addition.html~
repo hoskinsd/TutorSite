@@ -7,13 +7,14 @@
 	<script type = "text/javascript"  src="http://174.49.32.201/TutorSite/app.js"></script>
 </head>
 
+
 <body>
 	<font color=black>
 
 
 <script>
 console.log("hello");
-//newestWorksheet();
+newWorksheet('addition');
 </script>
 
 	<div>
@@ -23,12 +24,12 @@ console.log("hello");
 
 	<div>
 		<ul>
-			<li id='prob1'></li>	
+			<p id='prob1'></p>	
 		</ul>
 	</div>
 
 
-	<input id="clickMe" type="button" value="New Worksheet" onclick="newWorksheet();" />
+	<input id="clickMe" type="button" value="New Worksheet" onclick="newWorksheet('addition');" />
 
 	<br>
 	<br>

@@ -1,25 +1,35 @@
 <!DOCTYPE html>
-<html ng-app="workSheet">
+<html lang="en">
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<link rel="import" href="http://174.49.32.201/TutorSite/html_head.html">
+	<script type = "text/javascript" src="jquery-3.0.0.js"></script>
+	<script type = "text/javascript"  src="http://174.49.32.201/TutorSite/app.js"></script>
 </head>
 
-<body ng-controller="Controller">
+
+<body>
 	<font color=black>
+
+
+<script>
+console.log("hello");
+newWorksheet('subtraction');
+</script>
+
 	<div>
 
 	</div>
 	</font>
 
-	<div ng-controller="DoubleController">
-		<ul ng-repeat="x in fractions">
-			<li>{{x.numerator}} - {{x.denominator}} = <input ng-model="value" >{{ subtraction(x.id,value) }}<br></li>
-			{{result}}
-
+	<div>
+		<ul>
+			<p id='prob1'></p>	
 		</ul>
-
-	<input id="clickMe" type="button" value="New Worksheet" ng-click="newWorksheet()" />
 	</div>
+
+
+	<input id="clickMe" type="button" value="New Worksheet" onclick="newWorksheet('subtraction');" />
 
 	<br>
 	<br>
