@@ -1,0 +1,20 @@
+Loc_mode: random 
+ Dumper: $VAR1 = bless( {
+                 '.fieldnames' => {},
+                 'use_tempfile' => 1,
+                 '.parameters' => [
+                                    'mode',
+                                    'type'
+                                  ],
+                 'param' => {
+                              'mode' => [
+                                          'random'
+                                        ],
+                              'type' => [
+                                          'rando'
+                                        ]
+                            },
+                 '.charset' => 'ISO-8859-1',
+                 'escape' => 1
+               }, 'CGI' );
+
