@@ -4,17 +4,21 @@ use JSON;
 #use JSON::XS;
 use Data::Dumper;
 
-
+=comment
+Save returned data
+=cut
 my $q    = new CGI;
 my $loc_mode = $q->param( "mode" ) || shift;
-open FILE,">param.txt";
-open DATA,"<data.txt";
-my $next = <DATA>;
-close DATA;
-print "Next: $next\n";
 
-print "Type: $loc_mode*\n";
-print FILE "Dumper: " .Dumper($q)."\n";
+
+=comment
+Open Log file
+=cut
+open FILE,">/var/www/TutorSite/cgi-bin/param.txt";
+print FILE "Loc_mode: $loc_mode \n Dumper: " .Dumper($q)."\n";
+
+=build new data
+=cut
 my @rec_array;
 
 my %rec_hash1 = ('numerator' => int(rand(20)), 'denominator' => int(rand(20)), 'result' => int(rand(20)));

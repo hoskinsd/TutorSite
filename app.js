@@ -84,10 +84,13 @@ var loc_data;
 	function gradeWorksheet() {
 
 		// loop for number of problems
-		// add up score
-		// display score
-		// send score back to the server
-
+		num_problems = loc_data.len;
+		for (i = 0; i < loc_data.length; i++) { 
+			if ($("#r"+i).html == "Whoo Hooo"){
+				grade = grade + 20;
+			}
+		}
+		return grade; 
 	}
 
 //	function hello (event) {
