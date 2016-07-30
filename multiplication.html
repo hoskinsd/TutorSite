@@ -1,39 +1,49 @@
 <!DOCTYPE html>
-<html ng-app="workSheet">
+<html lang="en">
 <head>
-	<script src="http://www.w3schools.com/lib/w3data.js"></script>
-
-<!--		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
-
-<!--	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.js">    </script> -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
-	<script src="app.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="import" href="http://174.49.32.201/TutorSite/html_head.html">
+	<script type = "text/javascript" src="jquery-3.0.0.js"></script>
+	<script type = "text/javascript"  src="http://174.49.32.201/TutorSite/app.js"></script>
 </head>
-<body ng-controller="Controller">
-	<font color=black>
-	<div>
 
+
+<body>
+	<font color=black>
+
+
+<script>
+console.log("hello");
+newWorksheet('multiplication');
+</script>
+
+	<div>
+		<center><h1> Multiplication Worksheet </h1></center>
 	</div>
 	</font>
 
-	<div ng-controller="DoubleController">
-		<ul ng-repeat="x in fractions">
-			<li>{{x.numerator}} * {{x.denominator}} = <input ng-model="value" >{{ multiplication(x.id,value) }}<br></li>
-				
-<!--	  Two times <input ng-model="value"> equals {{ double(x.id,value) }}<br> -->
-<!--		{{myvalue}}<br> -->
-		Result:{{result}}<br>
-		Value:{{value}}
+	<div>
+		<ul>
+			<p id='prob1'></p>	
 		</ul>
-		<input id="clickMe" type="button" value="New Worksheet" onclick="newWorksheet();" />
 	</div>
+
+
+	<input id="clickMe" type="button" value="New Worksheet" onclick="newWorksheet('multiplication');" />
+	<input id="gradeMe" type="button" value="Get Grade" onclick="gradeWorkSheet('multiplication');" /><br><br><br>
+	<input id="sendgrade" type="button" value="Save Worksheet" onclick="sendGrade('multiplication');" />
+
+
+	<br>
+	<br>
+	<div id='output'>
+	This is default text
+	</div>
+
 
 </body>
 </html>
 
 
-<script>
-w3IncludeHTML();
-</script>
 
 

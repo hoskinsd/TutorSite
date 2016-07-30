@@ -1,11 +1,5 @@
 Loc_mode: random 
  Dumper: $VAR1 = bless( {
-                 '.fieldnames' => {},
-                 'use_tempfile' => 1,
-                 '.parameters' => [
-                                    'mode',
-                                    'type'
-                                  ],
                  'param' => {
                               'mode' => [
                                           'random'
@@ -14,7 +8,13 @@ Loc_mode: random
                                           'rando'
                                         ]
                             },
+                 '.parameters' => [
+                                    'mode',
+                                    'type'
+                                  ],
+                 'escape' => 1,
                  '.charset' => 'ISO-8859-1',
-                 'escape' => 1
+                 'use_tempfile' => 1,
+                 '.fieldnames' => {}
                }, 'CGI' );
 

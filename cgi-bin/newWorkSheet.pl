@@ -1,7 +1,6 @@
 #!/usr/bin/perl
 use CGI;
 use JSON;
-#use JSON::XS;
 use Data::Dumper;
 
 =comment
@@ -20,18 +19,14 @@ print FILE "Loc_mode: $loc_mode \n Dumper: " .Dumper($q)."\n";
 =build new data
 =cut
 my @rec_array;
+my $cnt = 0;
+my $max = 20;
 
-my %rec_hash1 = ('numerator' => int(rand(20)), 'denominator' => int(rand(20)), 'result' => int(rand(20)));
-my %rec_hash2 = ('numerator' => int(rand(20)), 'denominator' => int(rand(20)), 'result' => int(rand(20)));
-my %rec_hash3 = ('numerator' => int(rand(20)), 'denominator' => int(rand(20)), 'result' => int(rand(20)));
-my %rec_hash4 = ('numerator' => int(rand(20)), 'denominator' => int(rand(20)), 'result' => int(rand(20)));
-my %rec_hash5 = ('numerator' => int(rand(20)), 'denominator' => int(rand(20)), 'result' => int(rand(20)));
-
-push @rec_array, \%rec_hash1;
-push @rec_array, \%rec_hash2;
-push @rec_array, \%rec_hash3;
-push @rec_array, \%rec_hash4;
-push @rec_array, \%rec_hash5;
+while ( $cnt < $max) {
+	my %rec_hash = ('numerator' => int(rand(20)), 'denominator' => int(rand(20)), 'result' => int(rand(20)));
+	push @rec_array, \%rec_hash;
+	$cnt += 1;
+}
 
 my $json = encode_json \@rec_array;
 print "Content-type: text/html\r\n\r\n";
