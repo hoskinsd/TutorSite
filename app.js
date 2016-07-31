@@ -5,7 +5,10 @@
 
 var loc_data;
 
-	// Do an ajax call to save grade data
+/******************************************************************
+	Ajax Calls
+*******************************************************************/
+	// Grade the current worksheet
 	function gradeWorkSheet(type) {
 		var saveDataAPI = "http://174.49.32.201/TutorSite/cg/saveData.pl";
 		var string='';
@@ -38,7 +41,7 @@ var loc_data;
 			cur_wsd: json_data
 		})
 			.done(function( data ) {
-				//console.log( 'hellos2' );
+				$('#output').html("Worksheet is Saved");
 			})
 
 //		newWorksheet(type);
@@ -63,18 +66,55 @@ var loc_data;
 	};
 
 
+/******************************************************************
+	Support Functions
+*******************************************************************/
+
 	function create_html (data,type){
 			var string='';
 			var iterator=0;
 			var iterator2=0;
 			var size = data.length - 1;
+
 			string = "<center><table>";
-			for (iterator = 0; iterator < size; iterator+=2) {
-				iterator2= iterator + 1;
-				string = create_sql(string, data, type, iterator, iterator2);
-			}
+			string = create_problem_html(string, data, type, iterator);
 			string += "</table></center>";
+
 			return string;
+	}
+
+	function create_problem_html(string, data, type, iterator){
+		var operator;
+		var num_rows = 2;
+		var size = data.length - 1;
+
+		if (type == 'addition'){
+			operator = ' + ';
+		} else if (type == 'subtraction'){
+			operator = ' - ';
+		} else if (type == 'multiplication'){
+			operator = ' * ';
+		} else if (type == 'division'){
+			operator = ' / ';
+		}
+
+		for (iterator = 0; iterator < size; iterator+=2) {
+			string += "<center><tr>";
+			for (i = 0; i < num_rows; i++) { 
+
+			string +=	"<td>" + 
+								data[iterator+i].numerator + operator + data[iterator+i].denominator + " = " + 
+						"</td>" + 
+						"<td>" + 
+								"<input id=h" +(iterator+i)+" onclick='"+ 'calc_result(event,"'+(iterator+i)+'","'+type+'")' + "'>" + 
+						"</td>" + 
+						"<td>" + 
+								"<div id=r"+(iterator+i)+">__________</div>" + 
+						"</td>";
+			}
+			string += "</tr></center>";
+		}
+		return string;
 	}
 
 	function calc_result (event,id,type){
@@ -134,47 +174,6 @@ var loc_data;
 			}
 		}
 		return grade; 
-	}
-
-	function create_sql(string, data, type, iterator, iterator2){
-		var operator;
-
-		if (type == 'addition'){
-			operator = ' + ';
-		} else if (type == 'subtraction'){
-			operator = ' - ';
-		} else if (type == 'multiplication'){
-			operator = ' * ';
-		} else if (type == 'division'){
-			operator = ' / ';
-		}
-
-		string += "<center><tr>" + 
-							"<td>" + 
-									data[iterator].numerator + operator + data[iterator].denominator + " = " + 
-							"</td>" + 
-							"<td>" + 
-									"<input id=h" +iterator+" onclick='"+ 'calc_result(event,"'+iterator+'","'+type+'")' + "'>" + 
-							"</td>" + 
-							"<td>" + 
-									"<div id=r"+iterator+">__________</div>" + 
-							"</td>";
-		string += "<td>&nbsp;</td>" + 
-							"<td>" + 
-									data[iterator2].numerator + operator + data[iterator2].denominator + " = " + 
-							"</td>" + 
-							"<td>" + 
-									"<input id=h" +iterator2+" onclick='"+ 'calc_result(event,"'+iterator2+'","'+type+'")' + "'>" + 
-							"</td>" + 
-							"<td>" + 
-									"<div id=r"+iterator2+">__________</div>" + 
-							"</td></tr></center>";
-/*
-		string +=  "<td>&nbsp;</td><td>" + data[iterator2].numerator + operator + data[iterator2].denominator + 
-						" = </td><td><input id=h" +iterator2+" onclick='"+ 'calc_result(event,"'+iterator2+'","'+type+'")' + 
-						"'></td><td><div id=r"+iterator2+">__________</div></td></tr></center>";
-*/
-		return string;
 	}
 
 

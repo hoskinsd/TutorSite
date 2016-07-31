@@ -1,104 +1,104 @@
-Type: division	User: Doug	Grade: 5
+Type: subtraction	User: Doug	Grade: 15
 Worksheet Data: $VAR1 = [
           {
-            'numerator' => 11,
-            'denominator' => 6,
-            'result' => 1
-          },
-          {
-            'numerator' => 18,
-            'denominator' => 5,
-            'result' => 17
-          },
-          {
-            'result' => 8,
-            'numerator' => 18,
-            'denominator' => 16
-          },
-          {
-            'result' => 1,
-            'denominator' => 18,
-            'numerator' => 2
-          },
-          {
-            'numerator' => 6,
-            'denominator' => 13,
-            'result' => 15
-          },
-          {
-            'numerator' => 16,
-            'denominator' => 3,
-            'result' => 1
-          },
-          {
-            'result' => 1,
             'numerator' => 17,
-            'denominator' => 19
-          },
-          {
-            'denominator' => 13,
-            'numerator' => 15,
-            'result' => 16
-          },
-          {
-            'result' => 5,
-            'numerator' => 8,
-            'denominator' => 17
-          },
-          {
-            'denominator' => 2,
-            'numerator' => 16,
-            'result' => 19
-          },
-          {
             'result' => 1,
-            'denominator' => 6,
-            'numerator' => 19
+            'denominator' => 0
           },
           {
-            'denominator' => 12,
-            'numerator' => 19,
-            'result' => 8
+            'numerator' => 17,
+            'denominator' => 7,
+            'result' => 13
           },
           {
-            'numerator' => 11,
-            'denominator' => 9,
-            'result' => 1
-          },
-          {
-            'result' => 16,
-            'denominator' => 19,
-            'numerator' => 16
-          },
-          {
-            'result' => 11,
-            'numerator' => 16,
-            'denominator' => 5
-          },
-          {
-            'denominator' => 3,
-            'numerator' => 9,
+            'numerator' => 5,
+            'denominator' => 5,
             'result' => 'Correct'
           },
           {
-            'result' => 12,
+            'denominator' => 7,
+            'result' => 9,
+            'numerator' => 9
+          },
+          {
+            'numerator' => 10,
+            'result' => 10,
+            'denominator' => 6
+          },
+          {
+            'numerator' => 6,
+            'denominator' => 4,
+            'result' => 14
+          },
+          {
+            'numerator' => 14,
+            'result' => 19,
+            'denominator' => 11
+          },
+          {
+            'numerator' => 16,
+            'denominator' => 10,
+            'result' => 18
+          },
+          {
             'numerator' => 12,
-            'denominator' => 16
-          },
-          {
-            'denominator' => 12,
-            'numerator' => 8,
-            'result' => 19
-          },
-          {
             'result' => 5,
-            'numerator' => 18,
-            'denominator' => 7
+            'denominator' => 10
+          },
+          {
+            'numerator' => 4,
+            'denominator' => 0,
+            'result' => 'Correct'
+          },
+          {
+            'denominator' => 14,
+            'result' => 5,
+            'numerator' => 18
+          },
+          {
+            'denominator' => 8,
+            'result' => 10,
+            'numerator' => 14
+          },
+          {
+            'result' => 'Correct',
+            'denominator' => 4,
+            'numerator' => 16
+          },
+          {
+            'numerator' => 19,
+            'result' => 1,
+            'denominator' => 12
+          },
+          {
+            'numerator' => 13,
+            'denominator' => 1,
+            'result' => 5
+          },
+          {
+            'denominator' => 2,
+            'result' => 11,
+            'numerator' => 5
           },
           {
             'result' => 17,
-            'denominator' => 11,
-            'numerator' => 19
+            'denominator' => 7,
+            'numerator' => 16
+          },
+          {
+            'result' => 2,
+            'denominator' => 14,
+            'numerator' => 18
+          },
+          {
+            'result' => 11,
+            'denominator' => 5,
+            'numerator' => 12
+          },
+          {
+            'denominator' => 9,
+            'result' => 3,
+            'numerator' => 10
           }
         ];
 
