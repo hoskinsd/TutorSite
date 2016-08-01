@@ -42,7 +42,7 @@ var loc_data;
 		})
 			.done(function( data ) {
 				//console.log( 'hellos2' );
-				console.log( data[0].numerator );
+				console.log( data[0].operand1 );
 				loc_data = data;
 				string = create_html(data,type);
 				$('#prob1').html(string);
@@ -94,7 +94,7 @@ var loc_data;
 			string += "<center><tr>";
 			for (i = 0; i < num_rows; i++) { 
 				string +=	"<td>" + 
-									data[iterator+i].numerator + operator + data[iterator+i].denominator + " = " + 
+									data[iterator+i].operand1 + operator + data[iterator+i].operand2 + " = " + 
 								"</td>" + 
 								"<td>" + 
 									"<input id=h" +(iterator+i)+" onclick='"+ 'calc_result(event,"'+(iterator+i)+'","'+type+'")' + "'>" + 
@@ -115,17 +115,17 @@ var loc_data;
 		$("#h"+id).keyup(function(event){
 			 if((event.keyCode == 13) || (event.keyCode == 9)){
 					if (type == "addition"){
-						$('#h'+id).val() == loc_data[id].numerator + loc_data[id].denominator ? $("#r"+id).html("CORRECT!") : $("#r"+id).html("Sorry"); 
-						loc_data[id].result = $('#h'+id).val() == loc_data[id].numerator + loc_data[id].denominator ? 'Correct' : 'Wrong'; 
+						$('#h'+id).val() == loc_data[id].operand1 + loc_data[id].operand2 ? $("#r"+id).html("CORRECT!") : $("#r"+id).html("Sorry"); 
+						loc_data[id].result = $('#h'+id).val() == loc_data[id].operand1 + loc_data[id].operand2 ? 'Correct' : 'Wrong'; 
 					} else if (type == "subtraction"){
-						$('#h'+id).val() == loc_data[id].numerator - loc_data[id].denominator ? $("#r"+id).html("CORRECT!") : $("#r"+id).html("Sorry"); 
-						loc_data[id].result = $('#h'+id).val() == loc_data[id].numerator - loc_data[id].denominator ? 'Correct' : 'Wrong'; 
+						$('#h'+id).val() == loc_data[id].operand1 - loc_data[id].operand2 ? $("#r"+id).html("CORRECT!") : $("#r"+id).html("Sorry"); 
+						loc_data[id].result = $('#h'+id).val() == loc_data[id].operand1 - loc_data[id].operand2 ? 'Correct' : 'Wrong'; 
 					} else if (type == "multiplication"){
-						$('#h'+id).val() == loc_data[id].numerator * loc_data[id].denominator ? $("#r"+id).html("CORRECT!") : $("#r"+id).html("Sorry"); 
-						loc_data[id].result = $('#h'+id).val() == loc_data[id].numerator * loc_data[id].denominator ? 'Correct' : 'Wrong'; 
+						$('#h'+id).val() == loc_data[id].operand1 * loc_data[id].operand2 ? $("#r"+id).html("CORRECT!") : $("#r"+id).html("Sorry"); 
+						loc_data[id].result = $('#h'+id).val() == loc_data[id].operand1 * loc_data[id].operand2 ? 'Correct' : 'Wrong'; 
 					} else if (type == "division"){
-						$('#h'+id).val() == loc_data[id].numerator / loc_data[id].denominator ? $("#r"+id).html("CORRECT!") : $("#r"+id).html("Sorry"); 
-						loc_data[id].result = $('#h'+id).val() == loc_data[id].numerator / loc_data[id].denominator ? 'Correct' : 'Wrong'; 
+						$('#h'+id).val() == loc_data[id].operand1 / loc_data[id].operand2 ? $("#r"+id).html("CORRECT!") : $("#r"+id).html("Sorry"); 
+						loc_data[id].result = $('#h'+id).val() == loc_data[id].operand1 / loc_data[id].operand2 ? 'Correct' : 'Wrong'; 
 
 					}
 			 }

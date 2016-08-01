@@ -46,12 +46,12 @@ $ws_data_sth = &get_sth($dbh, $ws_data_sql);
 
 $problem_num = 1;
 foreach $row (@$data_array){
-   my $numerator = $row->{numerator};
-   my $denominator = $row->{denominator};
+   my $operand1 = $row->{'operand1'};
+   my $operand2 = $row->{'operand2'};
    my $result = $row->{result};
 	eval {
-		$ws_data_sth->execute($last_ws_id,$problem_num,"1",$numerator);
-		$ws_data_sth->execute($last_ws_id,$problem_num,"2",$denominator);
+		$ws_data_sth->execute($last_ws_id,$problem_num,"1",$operand1);
+		$ws_data_sth->execute($last_ws_id,$problem_num,"2",$operand2);
 	};
 	if ($@){
 		print FILE "DB ws_data_sth execute failed: $@\n";
