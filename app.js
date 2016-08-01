@@ -8,20 +8,6 @@ var loc_data;
 /******************************************************************
 	Ajax Calls
 *******************************************************************/
-	// Grade the current worksheet
-	function gradeWorkSheet(type) {
-		var saveDataAPI = "http://174.49.32.201/TutorSite/cg/saveData.pl";
-		var string='';
-		var grade='';
-		var json_grade;
-		var user = 'Doug';
-
-		grade = calcGrade(loc_data);
-		json_data = JSON.stringify(loc_data);
-		console.log('Grade: '+grade);
-		$('#output').html("Worksheet Grade is: " + grade + "%");
-
-	};
 
 	// Do an ajax call to save grade data
 	function sendGrade(type) {
@@ -52,8 +38,7 @@ var loc_data;
 		var worksheetAPI = "http://174.49.32.201/TutorSite/cg/newWorkSheet.pl";
 		var string='';
 		$.getJSON( worksheetAPI, {
-			mode: "random",
-			type: "rando"
+			type: type,
 		})
 			.done(function( data ) {
 				//console.log( 'hellos2' );
@@ -69,22 +54,29 @@ var loc_data;
 /******************************************************************
 	Support Functions
 *******************************************************************/
+	// Grade the current worksheet
+	function gradeWorkSheet(type) {
+		var grade='';
+
+		grade = calcGrade(loc_data);
+//		console.log('Grade: '+grade);
+		$('#output').html("Worksheet Grade is: " + grade + "%");
+
+	};
 
 	function create_html (data,type){
 			var string='';
-			var iterator=0;
-			var iterator2=0;
-			var size = data.length - 1;
 
 			string = "<center><table>";
-			string = create_problem_html(string, data, type, iterator);
+			string = create_html_problems(string, data, type);
 			string += "</table></center>";
 
 			return string;
 	}
 
-	function create_problem_html(string, data, type, iterator){
+	function create_html_problems(string, data, type){
 		var operator;
+		var iterator;
 		var num_rows = 2;
 		var size = data.length - 1;
 
@@ -101,16 +93,15 @@ var loc_data;
 		for (iterator = 0; iterator < size; iterator+=2) {
 			string += "<center><tr>";
 			for (i = 0; i < num_rows; i++) { 
-
-			string +=	"<td>" + 
-								data[iterator+i].numerator + operator + data[iterator+i].denominator + " = " + 
-						"</td>" + 
-						"<td>" + 
-								"<input id=h" +(iterator+i)+" onclick='"+ 'calc_result(event,"'+(iterator+i)+'","'+type+'")' + "'>" + 
-						"</td>" + 
-						"<td>" + 
-								"<div id=r"+(iterator+i)+">__________</div>" + 
-						"</td>";
+				string +=	"<td>" + 
+									data[iterator+i].numerator + operator + data[iterator+i].denominator + " = " + 
+								"</td>" + 
+								"<td>" + 
+									"<input id=h" +(iterator+i)+" onclick='"+ 'calc_result(event,"'+(iterator+i)+'","'+type+'")' + "'>" + 
+								"</td>" + 
+								"<td>" + 
+									"<div id=r"+(iterator+i)+">__________</div>" + 
+								"</td>";
 			}
 			string += "</tr></center>";
 		}
@@ -118,43 +109,24 @@ var loc_data;
 	}
 
 	function calc_result (event,id,type){
-	var ret_val;
-	var loc_index;
+		var ret_val;
+		var loc_index;
 
 		$("#h"+id).keyup(function(event){
 			 if((event.keyCode == 13) || (event.keyCode == 9)){
 					if (type == "addition"){
-						if ($('#h'+id).val() == loc_data[id].numerator + loc_data[id].denominator){
-							$("#r"+id).html("CORRECT!");
-							loc_data[id].result = 'Correct';
-						} else {
-							$("#r"+id).html("Sorry");
-							loc_data[id].result = 'Wrong';
-						}
+						$('#h'+id).val() == loc_data[id].numerator + loc_data[id].denominator ? $("#r"+id).html("CORRECT!") : $("#r"+id).html("Sorry"); 
+						loc_data[id].result = $('#h'+id).val() == loc_data[id].numerator + loc_data[id].denominator ? 'Correct' : 'Wrong'; 
 					} else if (type == "subtraction"){
-						if ($('#h'+id).val() == loc_data[id].numerator - loc_data[id].denominator){
-							$("#r"+id).html("CORRECT!");
-							loc_data[id].result = 'Correct';
-						} else {
-							$("#r"+id).html("Sorry");
-							loc_data[id].result = 'Wrong';
-						}
+						$('#h'+id).val() == loc_data[id].numerator - loc_data[id].denominator ? $("#r"+id).html("CORRECT!") : $("#r"+id).html("Sorry"); 
+						loc_data[id].result = $('#h'+id).val() == loc_data[id].numerator - loc_data[id].denominator ? 'Correct' : 'Wrong'; 
 					} else if (type == "multiplication"){
-						if ($('#h'+id).val() == loc_data[id].numerator * loc_data[id].denominator){
-							$("#r"+id).html("CORRECT!");
-							loc_data[id].result = 'Correct';
-						} else {
-							$("#r"+id).html("Sorry");
-							loc_data[id].result = 'Wrong';
-						}
+						$('#h'+id).val() == loc_data[id].numerator * loc_data[id].denominator ? $("#r"+id).html("CORRECT!") : $("#r"+id).html("Sorry"); 
+						loc_data[id].result = $('#h'+id).val() == loc_data[id].numerator * loc_data[id].denominator ? 'Correct' : 'Wrong'; 
 					} else if (type == "division"){
-						if ($('#h'+id).val() == loc_data[id].numerator / loc_data[id].denominator){
-							$("#r"+id).html("CORRECT!");
-							loc_data[id].result = 'Correct';
-						} else {
-							$("#r"+id).html("Sorry");
-							loc_data[id].result = 'Wrong';
-						}
+						$('#h'+id).val() == loc_data[id].numerator / loc_data[id].denominator ? $("#r"+id).html("CORRECT!") : $("#r"+id).html("Sorry"); 
+						loc_data[id].result = $('#h'+id).val() == loc_data[id].numerator / loc_data[id].denominator ? 'Correct' : 'Wrong'; 
+
 					}
 			 }
 		});
