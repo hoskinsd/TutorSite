@@ -1,20 +1,16 @@
-Loc_mode: random 
+Loc_type: addition 
  Dumper: $VAR1 = bless( {
-                 '.charset' => 'ISO-8859-1',
-                 '.fieldnames' => {},
+                 'param' => {
+                              'type' => [
+                                          'addition'
+                                        ]
+                            },
+                 'escape' => 1,
                  '.parameters' => [
-                                    'mode',
                                     'type'
                                   ],
-                 'escape' => 1,
+                 '.charset' => 'ISO-8859-1',
                  'use_tempfile' => 1,
-                 'param' => {
-                              'mode' => [
-                                          'random'
-                                        ],
-                              'type' => [
-                                          'rando'
-                                        ]
-                            }
+                 '.fieldnames' => {}
                }, 'CGI' );
 
