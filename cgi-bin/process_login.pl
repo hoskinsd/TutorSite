@@ -5,80 +5,87 @@ use DBI;
 use Data::Dumper;
 ########################################################################
 #
-# Save the data info for the current worksheet
+# Validate the user login
 #
-#	Worksheet data
-#	Worksheet problem data
 #
 ########################################################################
-my ($dbh, $ws_sth, $ws_data_sth);
-my ($row, $num_problems, $ws_sql, $ws_data_sql);
+my ($dbh, $update_sth, $update_sql, $login_data_sth, $login_data_sql);
+my ($row, $login_data);
 
-# Open Log file
-open FILE,">/var/www/TutorSite/cgi-bin/gradedata.txt";
+$| = 1;
 
+open FILE,">/var/www/TutorSite/cgi-bin/param.txt";
+
+
+########################################################################
 # Get CGI data
 my $q    = new CGI;
-my $grade = $q->param( "cur_grade" ) || shift;
 my $user = $q->param( "cur_user" ) || shift;
-my $type = $q->param( "cur_type" ) || shift;
-my $data_array = $q->param( "cur_wsd" ) || shift;
-$data_array = decode_json($data_array);
+my $password = $q->param( "cur_pw" ) || shift;
+my $type = $q->param( "type" ) || shift;
 
+print FILE "User: $user\tPassword: $password\n";
+########################################################################
 # Get database connection
 $dbh = &get_dbh();
 
 
-# Save worksheet data
-$ws_sql = "insert into worksheets set type=?, user=?, grade=?";
-$ws_sth = &get_sth($dbh, $ws_sql);
-$ws_sth->execute($type,$user,$grade);
-
-# Get the worksheet ID
-my $last_ws_id = $ws_sth->{'mysql_insertid'};
-
-
-
-# Save problem data
-$ws_data_sql = "insert into worksheetdata set WorkSheetID=?, problem=?, val_order=?, value=?";
-$ws_data_sth = &get_sth($dbh, $ws_data_sql);
-
-
-$problem_num = 1;
-foreach $row (@$data_array){
-   my $operand1 = $row->{'operand1'};
-   my $operand2 = $row->{'operand2'};
-   my $result = $row->{result};
-	eval {
-		$ws_data_sth->execute($last_ws_id,$problem_num,"1",$operand1);
-		$ws_data_sth->execute($last_ws_id,$problem_num,"2",$operand2);
-	};
-	if ($@){
-		print FILE "DB ws_data_sth execute failed: $@\n";
-		die $DBI::errstr;
-	}
-
-	$problem_num++;
+eval {
+########################################################################
+# Check login
+	$login_data_sql = "select * from Users where username=? and password=?";
+	$login_data_sth = &get_sth($dbh, $login_data_sql);
+	$login_data_sth->execute($user,$password);
+};
+if ($@) {
+	print "Select Error: $@\n"
 }
 
-$ws_data_sth->finish();
-$ws_sth->finish();
+########################################################################
+# Set the loggedin value for this user
+$success = 0;
+# check for the user record
+#if (my $row = $login_data_sth->fetchrow_hashref ){
+
+	eval {
+		# create update sql
+		if ($type =~ m/login/){
+			$update_sql = "update Users set loggedin='Y' where username=? and password=?";
+		} else {
+			$update_sql = "Replace Into Users set loggedin='Y',username=?,password=?";
+		}
+		$update_sth = &get_sth($dbh, $update_sql);
+		$update_sth->execute($user,$password);
 
 
-print FILE "Type: $type\tUser: $user\tGrade: $grade\n";
-print FILE "Worksheet Data: " . Dumper($data_array) . "\n";
+		$update_sql = "Select loggedin From Users where username=? and password=?";
+		$update_sth = &get_sth($dbh, $update_sql);
+		$update_sth->execute($user,$password);
+		$success = 1 if ($update_sth->rows() > 0);
 
+	};
+	if ($@) {
+		print "Update Error: $@\n"
+	}
+#}
 
+$login_data_sth->finish();
+$update_sth->finish();
 
-my @retval;
-push @retval, "hello";
-
-my $json = encode_json \@retval;
-
+########################################################################
+# Create and send json
+my $ret_array->{'ret_val'} = $success;
+my $json = encode_json $ret_array;
 print "Content-type: text/html\r\n\r\n";
-print " ";
+#print " ";
 print "$json\n";
 
+
+
+
+
+########################################################################
+# Support subroutines
 
 sub get_dbh {
 	my $dbh;
@@ -107,3 +114,5 @@ sub get_sth {
 	}
 	return $sth;
 }
+
+

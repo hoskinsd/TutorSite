@@ -14,6 +14,8 @@ use Data::Dumper;
 my ($dbh, $ws_sth, $ws_data_sth);
 my ($row, $num_problems, $ws_sql, $ws_data_sql);
 
+$| = 1;
+
 # Open Log file
 open FILE,">/var/www/TutorSite/cgi-bin/gradedata.txt";
 

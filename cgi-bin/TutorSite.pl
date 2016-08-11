@@ -8,11 +8,10 @@ print <<EOF;
 <html>
 <head>
 	<script src="http://www.w3schools.com/lib/w3data.js"></script>
-	<link rel="import" href="html_head.html">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<link rel="import" href="http://174.49.32.201/TutorSite/html_head.html">
-	<script type = "text/javascript" src="jquery-3.0.0.js"></script>
-	<script type = "text/javascript"  src="http://174.49.32.201/TutorSite/app.js"></script>
+	<script type = "text/javascript" src="http://174.49.32.201/TutorSite/jquery-3.0.0.js"></script>
+	<script type = "text/javascript"  src="http://174.49.32.201/TutorSite/main_page.js"></script>
 
 	<style>
 		body {
@@ -36,6 +35,7 @@ print <<EOF;
 		  top: 0;
 		  left: 0;
 		}
+
 		#inbutton{
 		  top: 65%;
 		  left: 10;
@@ -46,6 +46,13 @@ print <<EOF;
 		#login {
 		  z-index: 10;
 		}
+		#output{
+		  top: 70%;
+		  left: 10;
+		  height: 10%;
+		  width: 10%;
+		  position: absolute;
+		}
 	</style>
 </head>
 <body ng-app="workSheet">
@@ -55,6 +62,7 @@ print <<EOF;
 		<div id='content' w3-include-html="http://174.49.32.201/TutorSite/content.html"></div>
 	
 		<div id='inbutton'>	<input id="loginbutton" type="button" value="Login" onclick="login_popup();" /></div>
+		<div id='output'></div>
 </body>
 </html>
 
